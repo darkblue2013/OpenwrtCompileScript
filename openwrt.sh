@@ -1241,34 +1241,7 @@ source_lean() {
 		fi
 		
 		#替换lean首页文件，添加天气代码(by:冷淡)
-		indexif=$(grep -o "Local Weather" feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm)
-		if [[ "$indexif" == "Local Weather" ]]; then
-			echo "已经替换首页文件"
-		else
-			rm -rf feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
-			cp $HOME/$OW/$SF/$OCS/Warehouse/index_Weather/index.htm feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
-		fi
-	
-		x86indexif=$(grep -o "Local Weather" package/lean/autocore/files/index.htm)
-		if [[ "$x86indexif" == "Local Weather" ]]; then
-			echo "已经替换X86首页文件"
-		else
-			rm -rf package/lean/autocore/files/index.htm
-			cp $HOME/$OW/$SF/$OCS/Warehouse/index_Weather/x86_index.htm package/lean/autocore/files/index.htm
-		fi
-	
-		base_zh_po_if=$(grep -o "#天气预报" feeds/luci/modules/luci-base/po/zh-cn/base.po)
-		if [[ "$base_zh_po_if" == "#天气预报" ]]; then
-			echo "已添加天气预报翻译"
-		else
-			sed -i '$a \       ' feeds/luci/modules/luci-base/po/zh-cn/base.po
-			sed -i '$a #天气预报' feeds/luci/modules/luci-base/po/zh-cn/base.po
-			sed -i '$a msgid "Weather"' feeds/luci/modules/luci-base/po/zh-cn/base.po
-			sed -i '$a msgstr "天气"' feeds/luci/modules/luci-base/po/zh-cn/base.po
-			sed -i '$a \       ' feeds/luci/modules/luci-base/po/zh-cn/base.po
-			sed -i '$a msgid "Local Weather"' feeds/luci/modules/luci-base/po/zh-cn/base.po
-			sed -i '$a msgstr "本地天气"' feeds/luci/modules/luci-base/po/zh-cn/base.po
-		fi
+		
 	fi
 }
 
